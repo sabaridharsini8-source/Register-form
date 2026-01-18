@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        form {
+            width: 300px;
+            margin: 30px auto;
+        }
+        .container{
+            border: 1px solid white;
+            background-color: white;
+            color:black;
+            border-radius: 15px;
+            width: 400px;
+            position: relative;
+            left: 600px;
+            top: 20px;
+            right: 20px;
+            margin-top: -650px;
+        }
+        img{
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 8px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            font-family:cursive;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 320px;
+            background-color: #1967D2;
+            color: aliceblue;
+            font-size: large;
+            font-weight: 500px;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+        }
+        .words{
+            color: yellow;
+            background-color: transparent;
+            position: relative;
+            top: -650px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            z-index: 0;
+        }
+        .head{
+            text-align: center;
+        }
+        .account{
+            text-align: center;
+            text-decoration: underline;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="image">
+        <img src="./movie.jpg" alt="pic">
+    </div>
+    <div class="words">
+        <h2>Welcome to MovieBuff get<br>unlimited access to movies & television series</h2>
+    </div>
+<div class="container">
+<form>
+    <h1 class="head">Register Now</h1>
+
+    <p class="account">Already have an Account? or Sign In</p>
+    <label>Name:</label>
+    <input type="text" id="name">
+    <div class="error" id="nameError"></div>
+
+    <label>Email:</label>
+    <input type="email" id="email">
+    <div class="error" id="emailError"></div>
+
+    <label>Password:</label>
+    <input type="password" id="password">
+    <div class="error" id="passwordError"></div>
+
+    <button type="submit" id="submitBtn" disabled>Register</button>
+</form>
+</div>
+
+<script>
+    var nameInput = document.getElementById("name");
+    var emailInput = document.getElementById("email");
+    var passwordInput = document.getElementById("password");
+    var submitBtn = document.getElementById("submitBtn");
+
+    var nameError = document.getElementById("nameError");
+    var emailError = document.getElementById("emailError");
+    var passwordError = document.getElementById("passwordError");
+
+    function validateForm() {
+        var isValid = true;
+
+        // Name validation
+        if (nameInput.value.trim() === "") {
+            nameError.innerHTML = "Name is required";
+            isValid = false;
+        } else {
+            nameError.innerHTML = "";
+        }
+
+        // Email validation
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailInput.value)) {
+            emailError.innerHTML = "Enter a valid email address";
+            isValid = false;
+        } else {
+            emailError.innerHTML = "";
+        }
+
+        // Password validation
+        if (passwordInput.value.length < 6) {
+            passwordError.innerHTML = "Password must be at least 6 characters";
+            isValid = false;
+        } else {
+            passwordError.innerHTML = "";
+        }
+
+        submitBtn.disabled = !isValid;
+    }
+
+    //button
+    submitBtn.addEventListener("click",function(){
+        alert("Registered Successfully")
+    })
+
+    nameInput.addEventListener("input", validateForm);
+    emailInput.addEventListener("input", validateForm);
+    passwordInput.addEventListener("input", validateForm);
+</script>
+
+</body>
+</html>
